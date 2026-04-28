@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOVELLÉ — Premium Hair Salon</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "w9ciqh86hg");
+    </script>
+</head>
+
+<body>
+    <!-- WebGL Canvas (background layer) -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Transition Overlay Canvas -->
+    <canvas id="transition-canvas"></canvas>
+
+    <div id="brand-transition" aria-hidden="true">
+        <div class="brand-transition-lockup brand-lockup">
+            <img src="KIT/Transparent_Lovelle_Logo.png" alt="" class="brand-leaf">
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="loader-brand brand-lockup">
+                <img src="KIT/Transparent_Lovelle_Logo.png" alt="Lovelle logo" class="brand-leaf">
+            </div>
+            <div class="loader-text">LOVELLÉ</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="nav-header">
+        <nav>
+            <div class="nav-links nav-links-left">
+                <a href="#" class="nav-link active" data-page="home">ABOUT US</a>
+            </div>
+            <a href="#" class="nav-logo">LOVELLÉ</a>
+            <div class="nav-links nav-links-right">
+                <a href="#" class="nav-link" data-page="services">SERVICES</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Fixed Side Social Buttons -->
+    <div id="social-buttons">
+        <a href="https://wa.me/" target="_blank" rel="noopener" class="social-btn" id="btn-whatsapp"
+            aria-label="WhatsApp">
+            <canvas class="social-ripple-canvas"></canvas>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                    d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+            </svg>
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-btn" id="btn-instagram"
+            aria-label="Instagram">
+            <canvas class="social-ripple-canvas"></canvas>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- ==================== HOME PAGE ==================== -->
+    <main id="page-home" class="page active">
+
+        <!-- Hero / About Section -->
+        <section id="hero" class="section">
+            <div class="hero-content">
+                <div class="hero-brand brand-lockup">
+                    <img src="KIT/Transparent_Lovelle_Logo.png" alt="Lovelle" class="brand-leaf">
+                </div>
+                <div class="hero-overline">EST. MMXXIII</div>
+                <h1 class="hero-headline">
+                    <span class="line"><span class="word">THE</span> <span class="word">ART</span></span>
+                    <span class="line"><span class="word">OF</span> <span class="word">PRECISION</span></span>
+                </h1>
+                <div class="hero-divider"></div>
+                <p class="hero-sub">ELEVATE YOUR STYLE</p>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+                <span>SCROLL</span>
+            </div>
+        </section>
+
+        <!-- About Section — Editorial Photo Scroll Experience -->
+        <section id="about" class="section">
+
+            <!-- Section 1: Full-width photo with text overlay -->
+            <div class="photo-section photo-full" id="ps-1">
+                <div class="photo-frame">
+                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=80"
+                        alt="Salon interior" class="photo-img" loading="eager">
+                </div>
+                <div class="photo-overlay-text">
+                    <h2 class="section-label">ABOUT US</h2>
+                    <p class="overlay-heading">We craft bespoke<br>hair experiences</p>
+                </div>
+            </div>
+
+            <!-- Section 2: Split — text left, photo right -->
+            <div class="photo-section photo-split" id="ps-2">
+                <div class="split-text">
+                    <p class="about-body">
+                        Rooted in the heart of the city, our master stylists blend
+                        technical mastery with artful intuition to unveil your most
+                        sophisticated self.
+                    </p>
+                    <div class="text-line-accent"></div>
+                </div>
+                <div class="split-photo">
+                    <div class="photo-clip">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&q=80"
+                            alt="Precision haircut" class="photo-img" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Horizontal gallery strip -->
+            <div class="photo-section photo-gallery" id="ps-3">
+                <div class="gallery-track">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=700&q=80"
+                            alt="Hair styling" class="photo-img" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=700&q=80"
+                            alt="Salon tools" class="photo-img" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=700&q=80"
+                            alt="Hair coloring" class="photo-img" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Split — photo left, text right (reversed) -->
+            <div class="photo-section photo-split reverse" id="ps-4">
+                <div class="split-photo">
+                    <div class="photo-clip">
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=900&q=80"
+                            alt="Flowing hair" class="photo-img" loading="lazy">
+                    </div>
+                </div>
+                <div class="split-text">
+                    <p class="about-body">
+                        From architectural cuts to customized colors,
+                        every appointment is a precision performance.
+                        We don't just style hair — we craft confidence.
+                    </p>
+                    <div class="text-line-accent"></div>
+                </div>
+            </div>
+
+            <!-- Section 5: Big quote with background photo -->
+            <div class="photo-section photo-quote" id="ps-5">
+                <div class="photo-frame">
+                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=1400&q=80"
+                        alt="Luxury hair" class="photo-img" loading="lazy">
+                </div>
+                <div class="quote-overlay">
+                    <p class="big-quote">"EVERY STRAND<br>TELLS A STORY"</p>
+                </div>
+            </div>
+
+            <div class="cta-container">
+                <a href="#" class="cta-btn">RESERVE YOUR MOMENT</a>
+            </div>
+        </section>
+
+
+
+        <!-- Find Us / Map Section -->
+        <section id="find-us" class="section">
+            <div class="find-us-container">
+                <div class="find-us-header">
+                    <h2 class="section-label">FIND US</h2>
+                    <p class="find-us-address">123 Fashion Avenue, Premium District, City — 400001</p>
+                </div>
+                <div class="map-wrapper">
+                    <iframe src="https://maps.google.com/maps?q=Colaba%2C%20Mumbai&z=15&output=embed"
+                        style="border:0; width:100%; height:100%; filter: grayscale(100%);" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <a class="map-fallback-link" href="https://www.google.com/maps/search/?api=1&query=Colaba%2C+Mumbai"
+                    target="_blank" rel="noopener">
+                    OPEN IN GOOGLE MAPS
+                </a>
+                <div class="find-us-details">
+                    <div class="detail-col">
+                        <h3>HOURS</h3>
+                        <p>MON — SAT: 10:00 AM — 9:00 PM</p>
+                        <p>SUN: 11:00 AM — 7:00 PM</p>
+                    </div>
+                    <div class="detail-col">
+                        <h3>CONTACT</h3>
+                        <p>+91 98XXX XXXXX</p>
+                        <p>hello@lovelle.in</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>&copy; 2026 LOVELLÉ. ALL RIGHTS RESERVED.</p>
+        </footer>
+    </main>
+
+    <!-- ==================== SERVICES PAGE ==================== -->
+    <main id="page-services" class="page">
+
+        <section class="services-hero section">
+            <div class="services-hero-content">
+                <div class="services-brand brand-lockup">
+                    <img src="KIT/Transparent_Lovelle_Logo.png" alt="Lovelle" class="brand-leaf">
+                </div>
+                <h1 class="services-headline">
+                    <span class="line"><span class="word">SERVICES</span></span>
+                    <span class="line"><span class="word">WE </span> <span class="word"> OFFER</span></span>
+                </h1>
+                <div class="hero-divider"></div>
+                <p class="services-sub">PRECISION. LUXURY. ARTISTRY.</p>
+            </div>
+        </section>
+
+        <section class="svc-grid section">
+            <div class="svc-grid-inner" id="svc-cards">
+                <!-- Category cards + inline detail injected by JS -->
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <p>&copy; 2026 LOVELLÉ. ALL RIGHTS RESERVED.</p>
+        </footer>
+    </main>
+
+    <!-- Scripts (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/services-data.js"></script>
+    <script src="js/webgl-engine.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
