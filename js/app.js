@@ -132,14 +132,14 @@
 
     // --- Category Images & Display Config ---
     const CATEGORY_VISUALS = [
-        { img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80', tagline: 'ARTISTRY AT YOUR FINGERTIPS' },
+        { img: 'images/nails.jpg', tagline: 'ARTISTRY AT YOUR FINGERTIPS' },
         { img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80', tagline: 'RADIANCE REDEFINED' },
-        { img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80', tagline: 'LUMINOUS CLARITY' },
+        { img: 'images/skin.jpg', tagline: 'LUMINOUS CLARITY' },
         { img: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=80', tagline: 'PRECISION CUTS & COLOR', wide: true },
         { img: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80', tagline: 'DEFINED ELEGANCE' },
-        { img: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80', tagline: 'SILKEN SMOOTH' },
+        { img: 'images/waxing.jpg', tagline: 'SILKEN SMOOTH' },
         { img: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80', tagline: 'BEAUTY AMPLIFIED', wide: true },
-        { img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80', tagline: 'TOTAL RENEWAL' },
+        { img: 'images/oil-massage.jpg', tagline: 'TOTAL RENEWAL' },
         { img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80', tagline: 'GOLDEN GLOW RESTORED' },
         { img: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&q=80', tagline: 'DEEP NOURISHMENT' }
     ];
