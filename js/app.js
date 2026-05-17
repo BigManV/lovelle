@@ -136,10 +136,10 @@
         { img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80', tagline: 'RADIANCE REDEFINED' },
         { img: 'images/skin.jpg', tagline: 'LUMINOUS CLARITY' },
         { img: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=80', tagline: 'PRECISION CUTS & COLOR', wide: true },
-        { img: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80', tagline: 'DEFINED ELEGANCE' },
+        { img: 'images/Eyebrow-threading.webp', tagline: 'DEFINED ELEGANCE' },
         { img: 'images/waxing.jpg', tagline: 'SILKEN SMOOTH' },
         { img: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80', tagline: 'BEAUTY AMPLIFIED', wide: true },
-        { img: 'images/oil-massage.jpg', tagline: 'TOTAL RENEWAL' },
+        { img: 'images/body-massage.jpg', tagline: 'TOTAL RENEWAL' },
         { img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80', tagline: 'GOLDEN GLOW RESTORED' },
         { img: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&q=80', tagline: 'DEEP NOURISHMENT' }
     ];
@@ -229,8 +229,17 @@
         const title = document.getElementById('svc-detail-title');
         const body = document.getElementById('svc-detail-body');
 
-        // Move detail panel to right after the clicked card in the DOM
-        cardEl.after(detail);
+        // Move detail panel after the LAST card in the same visual grid row
+        // so that the full-width panel doesn't split the row and push siblings down
+        const allCards = Array.from(document.getElementById('svc-cards').querySelectorAll('.svc-card'));
+        const clickedTop = cardEl.offsetTop;
+        let lastCardInRow = cardEl;
+        for (const card of allCards) {
+            if (card.offsetTop === clickedTop) {
+                lastCardInRow = card;
+            }
+        }
+        lastCardInRow.after(detail);
 
         // Build pricing content
         let html = '';
@@ -242,7 +251,7 @@
                 html += `<span class="svc-item-name">${escapeHtml(item.name)}</span>`;
                 html += `<span class="svc-item-meta">`;
                 html += `<span class="svc-item-gender">${escapeHtml(item.gender)}</span>`;
-                html += `<span class="svc-item-price">${item.price.toLocaleString('en-IN')}</span>`;
+
                 html += `</span>`;
                 html += `</div>`;
             });
