@@ -285,7 +285,7 @@ const SERVICES_DATA = [
         ]
     },
     {
-        category: 'OIL MASSAGE',
+        category: 'HEAD MASSAGE',
         subcategories: [
             {
                 title: 'Head Massage',

@@ -141,7 +141,7 @@
         { img: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80', tagline: 'BEAUTY AMPLIFIED', wide: true },
         { img: 'images/body-massage.jpg', tagline: 'TOTAL RENEWAL' },
         { img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80', tagline: 'GOLDEN GLOW RESTORED' },
-        { img: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&q=80', tagline: 'DEEP NOURISHMENT' }
+        { img: 'images/head-massage.png', tagline: 'DEEP NOURISHMENT' }
     ];
 
     // Display order: HAIR (featured) first, then the rest
