@@ -42,6 +42,7 @@
                 sessionStorage.setItem('lovelle-consent', 'accepted');
                 overlay.classList.add('hidden');
                 setTimeout(() => overlay.remove(), 600);
+                window.dispatchEvent(new Event('lovelle-consent-accepted'));
             });
         }
 

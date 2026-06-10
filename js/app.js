@@ -44,14 +44,22 @@
         gsap.set('#page-services .services-headline .word', { yPercent: 120 });
         gsap.set('.hero-brand .brand-leaf, .services-brand .brand-leaf', { opacity: 0, y: 28, scale: 0.86, rotate: -10 });
 
-        // Play loading sequence
-        await animations.playLoadingSequence();
+        const startAnimations = async () => {
+            // Play loading sequence
+            await animations.playLoadingSequence();
 
-        // Play hero entrance
-        animations.playHeroEntrance();
+            // Play hero entrance
+            animations.playHeroEntrance();
 
-        // Init scroll-based animations for home page
-        initHomeScrollAnimations();
+            // Init scroll-based animations for home page
+            initHomeScrollAnimations();
+        };
+
+        if (sessionStorage.getItem('lovelle-consent') === 'accepted') {
+            startAnimations();
+        } else {
+            window.addEventListener('lovelle-consent-accepted', startAnimations, { once: true });
+        }
     }
 
     function initHomeScrollAnimations() {
