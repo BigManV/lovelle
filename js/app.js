@@ -139,13 +139,13 @@
         { img: 'images/Eyebrow-threading.webp', tagline: 'DEFINED ELEGANCE' },
         { img: 'images/waxing.jpg', tagline: 'SILKEN SMOOTH' },
         { img: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80', tagline: 'BEAUTY AMPLIFIED', wide: true },
-        { img: 'images/body-massage.jpg', tagline: 'TOTAL RENEWAL' },
+
         { img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80', tagline: 'GOLDEN GLOW RESTORED' },
         { img: 'images/head-massage.png', tagline: 'DEEP NOURISHMENT' }
     ];
 
     // Display order: HAIR (featured) first, then the rest
-    const DISPLAY_ORDER = [3, 0, 1, 2, 4, 5, 6, 7, 8, 9];
+    const DISPLAY_ORDER = [3, 0, 1, 2, 4, 5, 6, 7, 8];
 
     // --- Build Services Card Grid ---
     function buildServicesGrid() {
