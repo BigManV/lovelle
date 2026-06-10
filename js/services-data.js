@@ -77,14 +77,6 @@ const SERVICES_DATA = [
                 ]
             },
             {
-                title: 'Premium',
-                items: [
-                    { name: 'Dead Sea Mineral Facial — Dry Skin', price: 2600, gender: 'Unisex' },
-                    { name: 'Dead Sea Mineral Facial — Oily Skin', price: 2600, gender: 'Unisex' },
-                    { name: 'Dead Sea Mineral Facial — Anti Aging', price: 2600, gender: 'Unisex' }
-                ]
-            },
-            {
                 title: 'Luxury',
                 items: [
                     { name: 'Cryo Red Carpet Facial', price: 5000, gender: 'Unisex' }
@@ -255,18 +247,6 @@ const SERVICES_DATA = [
         ]
     },
     {
-        category: 'BODY',
-        subcategories: [
-            {
-                title: 'Polishing',
-                items: [
-                    { name: 'Essential Body Polishing', price: 4300, gender: 'Unisex' },
-                    { name: 'Premium Body Polishing', price: 5100, gender: 'Unisex' }
-                ]
-            }
-        ]
-    },
-    {
         category: 'SKIN (DE-TAN)',
         subcategories: [
             {
@@ -293,8 +273,7 @@ const SERVICES_DATA = [
                     { name: 'Brillare Oil Massage', price: 650, gender: 'Unisex' },
                     { name: 'Aroma Oil Head Massage', price: 400, gender: 'Unisex' },
                     { name: 'Olive Oil Head Massage', price: 400, gender: 'Unisex' },
-                    { name: 'Coconut Oil Head Massage', price: 400, gender: 'Unisex' },
-                    { name: 'Shantham Oil', price: 500, gender: 'Unisex' }
+                    { name: 'Coconut Oil Head Massage', price: 400, gender: 'Unisex' }
                 ]
             }
         ]
