@@ -1,0 +1,27 @@
+{
+  "name": "lovelle",
+  "version": "1.0.0",
+  "description": "LOVELLÉ - Premium Hair Salon Website",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BigManV/lovelle.git"
+  },
+  "keywords": [
+    "salon",
+    "hair",
+    "beauty"
+  ],
+  "author": "LOVELLÉ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BigManV/lovelle/issues"
+  },
+  "homepage": "https://github.com/BigManV/lovelle#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
