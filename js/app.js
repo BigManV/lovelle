@@ -39,6 +39,9 @@
         // Bind navigation
         bindNavigation();
 
+        // Bind the static academy enquiry experience
+        bindEnquiryForm();
+
         // Set initial states for animated elements
         gsap.set('#page-home .hero-headline .word', { yPercent: 120 });
         gsap.set('#page-services .services-headline .word', { yPercent: 120 });
@@ -71,7 +74,7 @@
 
     // --- Navigation ---
     function bindNavigation() {
-        document.querySelectorAll('.nav-link').forEach(link => {
+        document.querySelectorAll('[data-page]').forEach(link => {
             link.addEventListener('click', async (e) => {
                 e.preventDefault();
                 const target = link.dataset.page;
@@ -79,7 +82,14 @@
 
                 // Update active states
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
+                const activeNavLink = document.querySelector(`.nav-link[data-page="${target}"]`);
+                if (activeNavLink) activeNavLink.classList.add('active');
+
+                // Carry a selected course from its course card into the enquiry form
+                if (target === 'enquiry' && link.dataset.course) {
+                    const courseSelect = document.getElementById('enquiry-course');
+                    if (courseSelect) courseSelect.value = link.dataset.course;
+                }
 
                 // Play zoom-out fade transition
                 document.body.classList.add('is-transitioning');
@@ -134,6 +144,74 @@
             animations.playServicesEntrance();
             requestAnimationFrame(() => {
                 animations.initServicesScrollAnimations();
+            });
+        } else if (targetPage === 'courses') {
+            animateCoursesPage();
+        } else if (targetPage === 'enquiry') {
+            animateEnquiryPage();
+        }
+    }
+
+    function animateCoursesPage() {
+        gsap.fromTo('.academy-hero-content > *',
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out' }
+        );
+
+        document.querySelectorAll('.course-card').forEach(card => {
+            gsap.fromTo(card,
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.85,
+                    ease: 'power3.out',
+                    scrollTrigger: { trigger: card, start: 'top 84%', toggleActions: 'play none none reverse' }
+                }
+            );
+        });
+
+        ScrollTrigger.refresh();
+    }
+
+    function animateEnquiryPage() {
+        gsap.fromTo('.enquiry-aside-copy > *',
+            { opacity: 0, y: 24 },
+            { opacity: 1, y: 0, duration: 0.75, stagger: 0.1, ease: 'power3.out' }
+        );
+        gsap.fromTo('#enquiry-form-wrap',
+            { opacity: 0, y: 24 },
+            { opacity: 1, y: 0, duration: 0.8, delay: 0.15, ease: 'power3.out' }
+        );
+    }
+
+    function bindEnquiryForm() {
+        const form = document.getElementById('enquiry-form');
+        const formWrap = document.getElementById('enquiry-form-wrap');
+        const success = document.getElementById('enquiry-success');
+        const againButton = document.getElementById('enquiry-again');
+
+        if (!form || !formWrap || !success) return;
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            formWrap.hidden = true;
+            success.hidden = false;
+            success.focus();
+            gsap.fromTo(success, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' });
+        });
+
+        if (againButton) {
+            againButton.addEventListener('click', () => {
+                form.reset();
+                success.hidden = true;
+                formWrap.hidden = false;
+                document.getElementById('enquiry-name').focus();
             });
         }
     }
