@@ -31,11 +31,6 @@ module.exports = async function handler(request, response) {
         return sendJson(response, 400, { ok: false, error: 'Invalid request.' });
     }
 
-    // Silently accept bot submissions without adding them to the spreadsheet.
-    if (typeof body.website === 'string' && body.website.trim()) {
-        return sendJson(response, 200, { ok: true });
-    }
-
     const enquiry = validateEnquiry(body);
     if (!enquiry) {
         return sendJson(response, 400, { ok: false, error: 'Please check the submitted details.' });
