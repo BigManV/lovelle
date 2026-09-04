@@ -9,13 +9,28 @@
     // --- Globals ---
     let webgl, animations;
     let currentPage = 'home';
+    let pageTransitioning = false;
     const socialRipples = [];
     let activeCard = null;
     let svcTransitioning = false;
 
+    const PAGE_ROUTES = Object.freeze({
+        home: '/',
+        services: '/services',
+        courses: '/courses',
+        enquiry: '/enquire'
+    });
+
+    const PAGE_TITLES = Object.freeze({
+        home: 'LOVELLE - Premium Hair Salon',
+        services: 'Services | LOVELLE',
+        courses: 'Academy Courses | LOVELLE',
+        enquiry: 'Course Enquiry | LOVELLE'
+    });
+
     // --- Init ---
     async function init() {
-        document.title = 'LOVELLE - Premium Hair Salon';
+        setInitialPageFromLocation();
         document.querySelectorAll('.site-footer p').forEach((el) => {
             el.textContent = '© 2026 LOVELLE. ALL RIGHTS RESERVED.';
         });
@@ -51,11 +66,8 @@
             // Play loading sequence
             await animations.playLoadingSequence();
 
-            // Play hero entrance
-            animations.playHeroEntrance();
-
-            // Init scroll-based animations for home page
-            initHomeScrollAnimations();
+            // Animate whichever route was opened directly
+            animatePage(currentPage);
         };
 
         if (sessionStorage.getItem('lovelle-consent') === 'accepted') {
@@ -76,14 +88,11 @@
     function bindNavigation() {
         document.querySelectorAll('[data-page]').forEach(link => {
             link.addEventListener('click', async (e) => {
+                if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
                 e.preventDefault();
                 const target = link.dataset.page;
-                if (target === currentPage) return;
-
-                // Update active states
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                const activeNavLink = document.querySelector(`.nav-link[data-page="${target}"]`);
-                if (activeNavLink) activeNavLink.classList.add('active');
+                if (!PAGE_ROUTES[target] || target === currentPage || pageTransitioning) return;
 
                 // Carry a selected course from its course card into the enquiry form
                 if (target === 'enquiry' && link.dataset.course) {
@@ -91,15 +100,37 @@
                     if (courseSelect) courseSelect.value = link.dataset.course;
                 }
 
-                // Play zoom-out fade transition
-                document.body.classList.add('is-transitioning');
-                await animations.playBrandTransition(() => {
-                    // At midpoint, swap pages
-                    switchPage(target);
-                });
-                document.body.classList.remove('is-transitioning');
+                await navigateToPage(target, true);
             });
         });
+
+        window.addEventListener('popstate', async () => {
+            const target = getPageFromPath(window.location.pathname);
+            if (target !== currentPage) await navigateToPage(target, false);
+        });
+    }
+
+    async function navigateToPage(targetPage, updateHistory) {
+        if (pageTransitioning || targetPage === currentPage) return;
+
+        pageTransitioning = true;
+        document.body.classList.add('is-transitioning');
+
+        try {
+            await animations.playBrandTransition(() => {
+                if (updateHistory) {
+                    window.history.pushState({ page: targetPage }, '', PAGE_ROUTES[targetPage]);
+                }
+                switchPage(targetPage);
+            });
+        } finally {
+            document.body.classList.remove('is-transitioning');
+            pageTransitioning = false;
+
+            // Keep the visible page aligned if history changed during an animation.
+            const locationPage = getPageFromPath(window.location.pathname);
+            if (locationPage !== currentPage) navigateToPage(locationPage, false);
+        }
     }
 
     function switchPage(targetPage) {
@@ -113,11 +144,16 @@
         const pageEl = document.getElementById('page-' + targetPage);
         pageEl.classList.add('active');
         currentPage = targetPage;
+        updateNavigationState(targetPage);
+        document.title = PAGE_TITLES[targetPage];
 
         // Scroll to top
         window.scrollTo(0, 0);
 
-        // Init page-specific animations
+        animatePage(targetPage);
+    }
+
+    function animatePage(targetPage) {
         if (targetPage === 'home') {
             // Reset hero words for re-animation
             gsap.set('#page-home .hero-headline .word', { yPercent: 120 });
@@ -150,6 +186,33 @@
         } else if (targetPage === 'enquiry') {
             animateEnquiryPage();
         }
+    }
+
+    function setInitialPageFromLocation() {
+        const targetPage = getPageFromPath(window.location.pathname);
+
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        const pageEl = document.getElementById('page-' + targetPage);
+        if (pageEl) pageEl.classList.add('active');
+
+        currentPage = targetPage;
+        updateNavigationState(targetPage);
+        document.title = PAGE_TITLES[targetPage];
+    }
+
+    function getPageFromPath(pathname) {
+        const normalizedPath = pathname.replace(/\/+$/, '') || '/';
+        const matchedPage = Object.keys(PAGE_ROUTES).find(page => PAGE_ROUTES[page] === normalizedPath);
+        return matchedPage || 'home';
+    }
+
+    function updateNavigationState(targetPage) {
+        document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+            const isActive = link.dataset.page === targetPage;
+            link.classList.toggle('active', isActive);
+            if (isActive) link.setAttribute('aria-current', 'page');
+            else link.removeAttribute('aria-current');
+        });
     }
 
     function animateCoursesPage() {

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/enquiry",
+      "destination": "/enquire",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/services",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/courses",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/enquire",
+      "destination": "/index.html"
+    }
+  ]
+}
