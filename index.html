@@ -548,6 +548,10 @@
                     <p class="enquiry-lead">Complete the form below and we will help you find the right course.</p>
 
                     <form id="enquiry-form" class="enquiry-form">
+                        <div class="form-honeypot" aria-hidden="true">
+                            <label for="enquiry-website">WEBSITE</label>
+                            <input id="enquiry-website" name="website" type="text" tabindex="-1" autocomplete="off">
+                        </div>
                         <div class="form-field">
                             <label for="enquiry-name">NAME</label>
                             <input id="enquiry-name" name="name" type="text" autocomplete="name" required>
@@ -584,7 +588,7 @@
                             </div>
                         </fieldset>
                         <button type="submit" class="enquiry-submit"><span>SUBMIT ENQUIRY</span><span aria-hidden="true">&rarr;</span></button>
-                        <p class="form-note">This is currently a static enquiry form. Your details will not be sent or stored.</p>
+                        <p class="form-note" id="enquiry-form-status" role="status" aria-live="polite">Your details will only be used to respond to this enquiry.</p>
                     </form>
                 </div>
 

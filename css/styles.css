@@ -1704,8 +1704,19 @@ img {
 }
 
 .enquiry-form {
+    position: relative;
     display: grid;
     gap: 1.4rem;
+}
+
+.form-honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
 .form-grid {
@@ -1834,11 +1845,23 @@ img {
     color: var(--black);
 }
 
+.enquiry-submit:disabled,
+.enquiry-submit:disabled:hover {
+    background: var(--black);
+    color: var(--white);
+    cursor: wait;
+    opacity: 0.6;
+}
+
 .form-note {
     font-family: var(--font-body);
     font-size: 0.62rem;
     line-height: 1.6;
     color: var(--grey-400);
+}
+
+.form-note.is-error {
+    color: #9f1d1d;
 }
 
 .enquiry-success {

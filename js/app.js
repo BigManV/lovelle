@@ -39,7 +39,7 @@
         // Bind navigation
         bindNavigation();
 
-        // Bind the static academy enquiry experience
+        // Bind the academy enquiry form
         bindEnquiryForm();
 
         // Set initial states for animated elements
@@ -190,25 +190,67 @@
         const formWrap = document.getElementById('enquiry-form-wrap');
         const success = document.getElementById('enquiry-success');
         const againButton = document.getElementById('enquiry-again');
+        const submitButton = form ? form.querySelector('.enquiry-submit') : null;
+        const submitLabel = submitButton ? submitButton.querySelector('span') : null;
+        const status = document.getElementById('enquiry-form-status');
 
-        if (!form || !formWrap || !success) return;
+        if (!form || !formWrap || !success || !submitButton || !submitLabel || !status) return;
 
-        form.addEventListener('submit', (event) => {
+        const idleStatus = status.textContent;
+        const idleButtonLabel = submitLabel.textContent;
+
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
             if (!form.checkValidity()) {
                 form.reportValidity();
                 return;
             }
 
-            formWrap.hidden = true;
-            success.hidden = false;
-            success.focus();
-            gsap.fromTo(success, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' });
+            if (form.dataset.submitting === 'true') return;
+
+            form.dataset.submitting = 'true';
+            submitButton.disabled = true;
+            submitButton.setAttribute('aria-busy', 'true');
+            submitLabel.textContent = 'SENDING...';
+            status.classList.remove('is-error');
+            status.textContent = 'Sending your enquiry...';
+
+            try {
+                const payload = Object.fromEntries(new FormData(form).entries());
+                const response = await fetch('/api/enquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json().catch(() => null);
+                if (!response.ok || !result || !result.ok) {
+                    throw new Error('The enquiry service did not accept the submission.');
+                }
+
+                form.reset();
+                status.textContent = idleStatus;
+                formWrap.hidden = true;
+                success.hidden = false;
+                success.focus();
+                gsap.fromTo(success, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' });
+            } catch (error) {
+                console.error('Enquiry submission failed:', error.message);
+                status.classList.add('is-error');
+                status.textContent = 'We could not send your enquiry. Please try again in a moment.';
+            } finally {
+                delete form.dataset.submitting;
+                submitButton.disabled = false;
+                submitButton.removeAttribute('aria-busy');
+                submitLabel.textContent = idleButtonLabel;
+            }
         });
 
         if (againButton) {
             againButton.addEventListener('click', () => {
                 form.reset();
+                status.classList.remove('is-error');
+                status.textContent = idleStatus;
                 success.hidden = true;
                 formWrap.hidden = false;
                 document.getElementById('enquiry-name').focus();
