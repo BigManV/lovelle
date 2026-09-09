@@ -70,11 +70,7 @@
             animatePage(currentPage);
         };
 
-        if (sessionStorage.getItem('lovelle-consent') === 'accepted') {
-            startAnimations();
-        } else {
-            window.addEventListener('lovelle-consent-accepted', startAnimations, { once: true });
-        }
+        startAnimations();
     }
 
     function initHomeScrollAnimations() {

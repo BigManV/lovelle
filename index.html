@@ -13,25 +13,19 @@
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <script type="text/javascript">
-        (function (c, l, a, r, i, t, y) {
-            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "w9ciqh86hg");
-    </script>
+
 </head>
 
 <body>
     <!-- ==================== CONSENT POPUP ==================== -->
-    <div id="consent-overlay" class="consent-overlay">
-        <div class="consent-popup">
+    <div id="consent-overlay" class="consent-overlay" hidden>
+        <div class="consent-popup" role="dialog" aria-modal="true" aria-labelledby="consent-title" aria-describedby="consent-description">
             <div class="consent-header">
                 <div class="consent-brand brand-lockup">
                     <img src="KIT/Transparent_Lovelle_Logo.png" alt="Lovellé" class="brand-leaf">
                 </div>
-                <h2 class="consent-title">Welcome to LOVELLÉ</h2>
-                <p class="consent-subtitle">Before you continue, please review our policies</p>
+                <h2 class="consent-title" id="consent-title">Welcome to LOVELLÉ</h2>
+                <p class="consent-subtitle" id="consent-description">Choose whether to allow optional analytics and embedded maps. You can browse and enquire either way.</p>
             </div>
             <div class="consent-body">
                 <div class="consent-tabs">
@@ -41,28 +35,21 @@
                 </div>
                 <div class="consent-tab-content active" id="consent-cookies">
                     <h3>COOKIE POLICY</h3>
-                    <p><strong>Website:</strong> https://lovelle.salon</p>
-                    <h4>1. Introduction</h4>
-                    <p>This Cookie Policy explains how lovelle.salon (&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) uses cookies and similar technologies when you visit our website. By continuing to use our website, you agree to the use of cookies as described in this policy.</p>
-                    <h4>2. What Are Cookies</h4>
-                    <p>Cookies are small text files stored on your device when you visit a website. They help improve performance, understand user behavior, and enhance experience.</p>
-                    <h4>3. Types of Cookies We Use</h4>
-                    <p><strong>a. Essential Cookies</strong> &mdash; Required for website functionality; enable navigation and booking features.</p>
-                    <p><strong>b. Analytics Cookies</strong> &mdash; Help understand user behavior (e.g., Google Analytics).</p>
-                    <p><strong>c. Functional Cookies</strong> &mdash; Remember user preferences.</p>
-                    <p><strong>d. Marketing Cookies</strong> &mdash; Used for ads and campaign tracking (e.g., Facebook Pixel, Google Ads).</p>
-                    <h4>4. Third-Party Cookies</h4>
-                    <p>We may use third-party services like analytics tools, booking systems, and payment gateways. These have their own privacy policies.</p>
-                    <h4>5. Managing Cookies</h4>
-                    <p>You can control cookies via browser settings. Disabling cookies may affect functionality.</p>
-                    <h4>6. Consent</h4>
-                    <p>By using our website, you consent to cookie usage.</p>
-                    <h4>7. Data Protection</h4>
-                    <p>Data collected via cookies is handled as per our Privacy Policy.</p>
-                    <h4>8. Governing Law</h4>
-                    <p>This policy is governed by Indian laws.</p>
-                    <h4>9. Contact Us</h4>
-                    <p>Lovellé Salon<br>Website: https://lovelle.salon<br>Email: lovelle.salon@gmail.com<br>Phone: +91 89043 51616</p>
+                    <p>We use browser storage to remember your cookie preferences. Optional services stay off until you allow them.</p>
+                    <h4>Essential preference storage</h4>
+                    <p><strong>lovelle-cookie-consent</strong> stores your choices, policy version and expiry in local storage for 180 days on this browser. It is not used for tracking. If storage is blocked, your choice applies only to this page visit.</p>
+                    <h4>Optional analytics</h4>
+                    <p>Microsoft Clarity helps us understand site usage through session recordings and heatmaps. It loads only if you enable analytics. Its cookies include <strong>_clck</strong> (visitor identifier, up to one year) and <strong>_clsk</strong> (session grouping, up to one day). Advertising storage is always denied.</p>
+                    <p><a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft privacy statement</a></p>
+                    <h4>Optional embedded maps</h4>
+                    <p>Google Maps loads only if you enable embedded maps. Google receives connection information and may use its own cookies. You can instead use the external Google Maps link without enabling the embed.</p>
+                    <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google privacy policy</a></p>
+                    <h4>Changing your choice</h4>
+                    <p>Use Cookie settings in any page footer to accept, reject or change optional services. Rejecting leaves browsing and enquiries available. Withdrawing analytics reloads the page to stop the running tracker and removes accessible Clarity cookies on this site; it does not erase data already sent or cookies on other domains.</p>
+                    <h4>Other services</h4>
+                    <p>Fonts and animation libraries are delivered by Google Fonts and cdnjs to display the site; these requests expose ordinary connection information to those providers. This site does not install advertising pixels. External links are governed by the destination's policies.</p>
+                    <h4>Contact</h4>
+                    <p>Email: lovelle.salon@gmail.com<br>Phone: +91 89043 51616</p>
                 </div>
                 <div class="consent-tab-content" id="consent-privacy">
                     <h3>PRIVACY POLICY</h3>
@@ -125,9 +112,16 @@
                     <p>Lovellé Salon<br>Email: lovelle.salon@gmail.com<br>Phone: +91 89043 51616</p>
                 </div>
             </div>
+            <fieldset class="consent-preferences">
+                <legend>Optional services</legend>
+                <label><input type="checkbox" id="consent-analytics"> Analytics (Microsoft Clarity)</label>
+                <label><input type="checkbox" id="consent-maps"> Embedded Google Maps</label>
+                <p>Essential preference storage is always on. Choices last 180 days.</p>
+            </fieldset>
             <div class="consent-actions">
-                <button id="consent-cancel" class="consent-btn consent-btn-cancel">CANCEL</button>
-                <button id="consent-ok" class="consent-btn consent-btn-ok">I ACCEPT</button>
+                <button id="consent-cancel" class="consent-btn consent-btn-cancel">REJECT OPTIONAL</button>
+                <button id="consent-save" class="consent-btn consent-btn-cancel">SAVE CHOICES</button>
+                <button id="consent-ok" class="consent-btn consent-btn-ok">ACCEPT OPTIONAL</button>
             </div>
         </div>
     </div>
@@ -211,6 +205,9 @@
 
         <!-- Hero / About Section -->
         <section id="hero" class="section">
+            <video class="hero-background-video" autoplay muted loop playsinline preload="metadata" poster="videos/hero-collage.jpg" aria-hidden="true" tabindex="-1">
+                <source src="videos/hero-collage.mp4" type="video/mp4">
+            </video>
             <div class="hero-content">
                 <div class="hero-brand brand-lockup">
                     <img src="KIT/Transparent_Lovelle_Logo.png" alt="Lovelle" class="brand-leaf">
@@ -328,7 +325,8 @@
                     <p class="find-us-address">The TERMINAL Hoodi Mall, Hoodi, Bengaluru, Karnataka</p>
                 </div>
                 <div class="map-wrapper">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.559045171062!2d77.71186637507698!3d13.000031287317986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae11005d8f7781%3A0xa94bd99b215f1883!2sThe%20TERMINAL%20Hoodi%20Mall!5e0!3m2!1sen!2sin!4v1779030490079!5m2!1sen!2sin"
+                    <div class="map-consent-placeholder"><p>Enable embedded maps in Cookie settings to view this map.</p><button type="button" data-cookie-settings>Cookie settings</button></div>
+                    <iframe title="Location of Lovellé Salon" hidden data-consent-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.559045171062!2d77.71186637507698!3d13.000031287317986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae11005d8f7781%3A0xa94bd99b215f1883!2sThe%20TERMINAL%20Hoodi%20Mall!5e0!3m2!1sen!2sin!4v1779030490079!5m2!1sen!2sin"
                         style="border:0; width:100%; height:100%; filter: grayscale(100%);" allowfullscreen=""
                         loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
@@ -355,6 +353,7 @@
         <footer class="site-footer">
             <div class="footer-links">
                 <a href="#" class="footer-policy-link" data-policy="cookies">Cookie Policy</a>
+                <a href="#" data-cookie-settings>Cookie settings</a>
                 <span class="footer-sep">&middot;</span>
                 <a href="#" class="footer-policy-link" data-policy="privacy">Privacy Policy</a>
                 <span class="footer-sep">&middot;</span>
@@ -390,6 +389,7 @@
         <footer class="site-footer">
             <div class="footer-links">
                 <a href="#" class="footer-policy-link" data-policy="cookies">Cookie Policy</a>
+                <a href="#" data-cookie-settings>Cookie settings</a>
                 <span class="footer-sep">&middot;</span>
                 <a href="#" class="footer-policy-link" data-policy="privacy">Privacy Policy</a>
                 <span class="footer-sep">&middot;</span>
@@ -519,6 +519,7 @@
         <footer class="site-footer">
             <div class="footer-links">
                 <a href="#" class="footer-policy-link" data-policy="cookies">Cookie Policy</a>
+                <a href="#" data-cookie-settings>Cookie settings</a>
                 <span class="footer-sep">&middot;</span>
                 <a href="#" class="footer-policy-link" data-policy="privacy">Privacy Policy</a>
                 <span class="footer-sep">&middot;</span>
@@ -601,6 +602,7 @@
         <footer class="site-footer">
             <div class="footer-links">
                 <a href="#" class="footer-policy-link" data-policy="cookies">Cookie Policy</a>
+                <a href="#" data-cookie-settings>Cookie settings</a>
                 <span class="footer-sep">&middot;</span>
                 <a href="#" class="footer-policy-link" data-policy="privacy">Privacy Policy</a>
                 <span class="footer-sep">&middot;</span>
